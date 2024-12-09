@@ -1,14 +1,14 @@
 // Harjoitustyö Anton Markki 24TIETOB, 4-5p
 // Kirjastot
-#include<iostream>
-#include<vector>
-#include<string>
-#include<cstdlib>
-#include<ctime>
-#include<iomanip>
-#include<locale>
-#include<fstream>
-#include<sstream>
+#include <iostream>
+#include <vector>
+#include <string>
+#include <cstdlib>
+#include <ctime>
+#include <iomanip>
+#include <locale>
+#include <fstream>
+#include <sstream>
 
 using namespace std;
 
@@ -23,22 +23,22 @@ struct Varaus
 };
 
 // Aliohjelma huoneiden varaustilanteen tarkistamiseen
-bool tarkistaHuone(const vector<bool>& huoneet, int huonenumero)
+bool tarkistaHuone(const vector<bool> &huoneet, int huonenumero)
 {
     return !huoneet[huonenumero - 1];
 }
 
 // Aliohjelma varauksen tallentamiseen tiedostoon
-void tallennaVarausTiedostoon(const Varaus& varaus)
+void tallennaVarausTiedostoon(const Varaus &varaus)
 {
     ofstream tiedosto("varaukset.txt", ios::app);
     if (tiedosto.is_open())
     {
         tiedosto << varaus.varausNumero << ";"
-            << varaus.varaajanNimi << ";"
-            << varaus.huoneNumero << ";"
-            << varaus.oidenMaara << ";"
-            << varaus.loppusumma << "\n";
+                 << varaus.varaajanNimi << ";"
+                 << varaus.huoneNumero << ";"
+                 << varaus.oidenMaara << ";"
+                 << varaus.loppusumma << "\n";
         tiedosto.close();
     }
     else
@@ -48,7 +48,7 @@ void tallennaVarausTiedostoon(const Varaus& varaus)
 }
 
 // Aliohjelma varauksen tekemiseen
-void teeVaraus(vector<bool>& yhdenHengenHuoneet, vector<bool>& kahdenHengenHuoneet, vector<Varaus>& varaukset)
+void teeVaraus(vector<bool> &yhdenHengenHuoneet, vector<bool> &kahdenHengenHuoneet, vector<Varaus> &varaukset)
 {
     string nimi;
     int huonetyyppi, yot;
@@ -86,7 +86,7 @@ void teeVaraus(vector<bool>& yhdenHengenHuoneet, vector<bool>& kahdenHengenHuone
     int varausNumero = rand() % 90000 + 10000;
     double loppusumma = hinta * yot * (1 - alennusPros / 100);
 
-    Varaus uusiVaraus = { varausNumero, nimi, huone, yot, loppusumma };
+    Varaus uusiVaraus = {varausNumero, nimi, huone, yot, loppusumma};
     varaukset.push_back(uusiVaraus);
     tallennaVarausTiedostoon(uusiVaraus);
 
@@ -175,7 +175,7 @@ void haeVaraus()
 // Pääohjelma
 int main()
 {
-    setlocale(LC_ALL, "fi-FI");  // Ääkköstuki
+    setlocale(LC_ALL, "fi-FI"); // Ääkköstuki
 
     srand(time(0)); // Satunnaislukugeneraattorin siemen
 
@@ -190,7 +190,7 @@ int main()
 
     int valinta;
     do
-    {   // Valikko
+    { // Valikko
         cout << "\n--- Hotellihuoneen varausohjelma ---\n";
         cout << "1. Tee varaus\n";
         cout << "2. Hae varausta\n";
